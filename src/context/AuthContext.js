@@ -18,13 +18,13 @@ export const authReducer = (state, action) => {
 }
 
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { auth,
+  const [state, dispatch] = useReducer(authReducer, {
     user: null,
     authIsReady: false
   })
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(user => {
+    const unsub = onAuthStateChanged(auth, user => {
       dispatch({ type: 'AUTH_IS_READY', payload: user })
       unsub()
     })
